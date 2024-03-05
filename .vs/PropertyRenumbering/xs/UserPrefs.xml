@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{6DF68E2A-908A-48BB-9611-EBC1403AB8E9}|https">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PropertyRenumbering/Views/PropertyRegistration/Create.cshtml">
+    <Files>
+      <File FileName="PropertyRenumbering/Views/PropertyRegistration/Create.cshtml" Line="180" Column="39" />
+      <File FileName="PropertyRenumbering/Models/PropertyRegistration.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PropertyRenumbering" expanded="True">
+            <Node name="PropertyRenumbering" expanded="True">
+              <Node name="Views" expanded="True">
+                <Node name="PropertyRegistration" expanded="True">
+                  <Node name="Create.cshtml" selected="True" />
+                </Node>
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True" />
+                <Node name="js" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.PropertyRenumbering PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/boakye/Projects/PropertyRenumbering/PropertyRenumbering/Controllers/PropertyRegistration.cs" relfile="PropertyRenumbering/Controllers/PropertyRegistration.cs" line="127" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>

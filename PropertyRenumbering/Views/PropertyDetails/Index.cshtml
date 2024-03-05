@@ -1,0 +1,179 @@
+@model IEnumerable<PropertyRenumbering.Models.PropertyDetails>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OldPropertyNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LandUseId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LandUseTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Acreage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Acreage2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlockNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlotNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlotSizeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lane)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Neighbourhood)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LargeScale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DebtorType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GroupNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SellingPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrencyId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitsOccupied)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonthlyRent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RightOfEntry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeasePeriodId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyHeightId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.locality)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropertyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropertyTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OldPropertyNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LandUseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LandUseTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acreage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acreage2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlockNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlotNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlotSizeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lane)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Neighbourhood)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LargeScale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DebtorType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SellingPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrencyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsOccupied)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonthlyRent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RightOfEntry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeasePeriodId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropertyHeightId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.locality.LocalityInitial)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NewPropertyNumber">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NewPropertyNumber">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NewPropertyNumber">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

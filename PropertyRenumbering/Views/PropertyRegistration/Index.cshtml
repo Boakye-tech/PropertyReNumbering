@@ -1,0 +1,83 @@
+@model IEnumerable<PropertyRenumbering.Models.PropertyRegistration>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OldPropertyNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LandUseTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlockNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlotNumber)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.locality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.landUse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.allocationType)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropertyId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropertyTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OldPropertyNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LandUseTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlockNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlotNumber)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.locality.LocalityInitial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.landUse.LandUseInitial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.allocationType.AllocationTypeInitial)
+            </td>*@
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NewPropertyNumber">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NewPropertyNumber">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NewPropertyNumber">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
