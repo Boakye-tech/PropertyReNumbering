@@ -1,13 +1,81 @@
-﻿@{
+﻿@model PropertyRenumbering.Models.PropertyRegistration
+@{
     ViewData["Title"] = "Home Page";
 }
 
 @*<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>*@
+</div>
 
 <div class="text-center">
     
 </div>
+*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
 
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the property re-numbering web application</h1>
+        <p>Convert property numbers from the old format to the new format. View list of converted property numbers</p>
+        <p>Select a locality to get started</p>
+<div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <select asp-for="LocalityId" class="form-control" asp-items="ViewBag.LocalityId" id="cboLocality" required>
+                        <option selected disabled>Select a locality...</option>
+                    </select>
+                    <span asp-validation-for="LocalityId" class="text-danger"></span>
+                </div>
+            </div>
+</div>
+       <br />
+       <br />
+       @*  <a href="#" class="cta-button">Convert Property Number</a>
+        <a href="#" class="cta-button">View Converted Property Number</a>*@
+  <div class="row-cols-2">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button id="btnConvert" class="btn btn-primary">Convert Property Number</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <button id="btnView" class="btn btn-primary">View Converted Property Number</button>
+                </div>
+            </div>
+  </div>
+
+
+
+        
+        
+    </div>
+</body>
+
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript" lang="javascript">
+
+
+
+
+
+
+
+
+
+</script>
+
+}

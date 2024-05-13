@@ -8753,24 +8753,32 @@
     ]
   },
   "packageFolders": {
-    "/Users/boakye/.nuget/packages/": {}
+    "C:\\Users\\TDCTEMA\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/boakye/Projects/PropertyRenumbering/PropertyRenumbering/PropertyRenumbering.csproj",
+      "projectUniqueName": "C:\\Users\\TDCTEMA\\Source\\Repos\\PropertyReNumbering\\PropertyRenumbering\\PropertyRenumbering.csproj",
       "projectName": "PropertyRenumbering",
-      "projectPath": "/Users/boakye/Projects/PropertyRenumbering/PropertyRenumbering/PropertyRenumbering.csproj",
-      "packagesPath": "/Users/boakye/.nuget/packages/",
-      "outputPath": "/Users/boakye/Projects/PropertyRenumbering/PropertyRenumbering/obj/",
+      "projectPath": "C:\\Users\\TDCTEMA\\Source\\Repos\\PropertyReNumbering\\PropertyRenumbering\\PropertyRenumbering.csproj",
+      "packagesPath": "C:\\Users\\TDCTEMA\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\TDCTEMA\\Source\\Repos\\PropertyReNumbering\\PropertyRenumbering\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/boakye/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\TDCTEMA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8843,7 +8851,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

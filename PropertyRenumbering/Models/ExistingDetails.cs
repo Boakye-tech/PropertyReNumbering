@@ -6,13 +6,18 @@ namespace PropertyRenumbering.Models
 	public class ExistingDetails
 	{
         [Key]
-        [MaxLength(75)]
-        public string? PropertyNumber { get; set; }
+        [StringLength(75)]
+        public string? OldPropertyNumber { get; set; }
 
-        [MaxLength(255)]
+        [StringLength(255)]
         public string? CustomerName { get; set; }
 
+        public int LocalityId { get; set; }
+
         public int Renumbered { get; set; }
+
+        [StringLength(10)]
+        public string? CustomerCode { get; set; }
     }
 }
 

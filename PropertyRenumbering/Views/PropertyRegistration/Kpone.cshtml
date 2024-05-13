@@ -1,0 +1,343 @@
+@model PropertyRenumbering.Models.PropertyRegistration
+
+@{
+    ViewData["Title"] = "Kpone";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+@*<h1>Create</h1>*@
+
+<h4 align="center">Kpone - Re-Numbering</h4>
+<hr />
+
+
+
+<body>
+    <form asp-action="Kpone" asp-controller="PropertyRegistration" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="blocks" class="control-label">Blocks</label>
+                    <select for="blocks" class="form-control" asp-items="ViewBag.BlockId" id="cboBlock">
+                        <option selected disabled>Select a block...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="OldPropertyNumber" class="control-label"></label>
+                    <select asp-for="OldPropertyNumber" class="form-control" asp-items="ViewBag.OldPropertyNumber" id="cboOldPropertyNumber" required>
+                        <option selected disabled>Select an old property number...</option>
+                    </select>
+                    @* <span asp-validation-for="OldPropertyNumber" class="text-danger"></span> *@
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="CustomerName" class="control-label">Customer Name</label>
+                    <input asp-for="CustomerName" class="form-control" id="txtCustomerName" required />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="PropertyTypeId" class="control-label"></label>
+                    <select asp-for="PropertyTypeId" class="form-control" asp-items="ViewBag.PropertyTypeId" id="cboPropertyType">
+                        <option selected disabled>Select a property type...</option>
+                    </select>
+                    <span asp-validation-for="PropertyTypeId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="LandUseId" class="control-label"></label>
+                    <select asp-for="LandUseId" class="form-control" asp-items="ViewBag.LandUseId" id="cboLandUse" required>
+                        <option selected disabled>Select landuse...</option>
+                    </select>
+                    <span asp-validation-for="LandUseId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="LandUseTypeId" class="control-label"></label>
+                    <select asp-for="LandUseTypeId" class="form-control" asp-items="ViewBag.LandUseTypeId" id="cboLandUseType">
+                        <option selected disabled>Select land use type...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label asp-for="LocalityId" class="control-label"></label>
+                    <select asp-for="LocalityId" class="form-control" asp-items="ViewBag.LocalityId" id="cboLocality" required>
+                        <option selected disabled>Select a locality...</option>
+                    </select>
+                    <span asp-validation-for="LocalityId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="AllocationTypeId" class="control-label"></label>
+                    <select asp-for="AllocationTypeId" class="form-control" asp-items="ViewBag.AllocationTypeId" id="cboAllocationType" required>
+                        <option selected disabled>Select allocation type...</option>
+                    </select>
+                    <span asp-validation-for="AllocationTypeId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label asp-for="BlockNumber" class="control-label"></label>
+                    <input asp-for="BlockNumber" class="form-control" id="txtBlockNumber" required />
+                    <span asp-validation-for="BlockNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label asp-for="PlotNumber" class="control-label"></label>
+                    <input asp-for="PlotNumber" class="form-control" id="txtPlotNumber" required />
+                    <span asp-validation-for="PlotNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="NewPropertyNumber" class="control-label"></label>
+                    <input asp-for="NewPropertyNumber" class="form-control" readonly="readonly" id="txtNewPropertyNumber" required />
+                    <span asp-validation-for="NewPropertyNumber" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="button" value="Generate" class="btn btn-secondary" id="btnGenerate" />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-primary" id="btnSubmit" />
+                </div>
+            </div>
+        </div>
+
+        <br />
+    </form>
+</body>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script type="text/javascript" lang="javascript">
+
+
+        $(document).ready(function () {
+
+            // $("#cboLandUse").find("option:contains('RESIDENTIAL')").prop("selected", true);
+            $("#cboLocality").find("option:contains('KPONE')").prop("selected", true);
+
+            $.getJSON('@Url.Action("LandUseTypes")', { landuseid: 1 },
+                function (results) {
+                    $.each(results, function (i) {
+                        let landusetype = results[i];
+                        $("#cboLandUseType").append("<option value=" + landusetype.landUseTypeId + ">" + landusetype.landUseTypeName + "</option>");
+                    });
+                }
+            );
+        });
+
+        $("#btnGenerate").click(function () {
+            let blockNumber = $("#txtBlockNumber");
+            if (blockNumber.val() === "" || blockNumber.val() === null) {
+                $("#txtBlockNumber").focus();
+                return;
+            }
+
+            let plotNumber = $("#txtPlotNumber");
+            if (plotNumber.val() === "" || plotNumber.val() === null) {
+                $("#txtPlotNumber").focus();
+                return;
+            }
+
+            let landuse = $("#cboLandUse").val();
+            if (landuse === "Select landuse...") {
+                $("#cboLandUse").focus();
+                return;
+            }
+
+            let landusetype = $("#cboLandUseType").val();
+            if (landusetype === "Select land use type...") {
+                $("#cboLandUseType").focus();
+                return;
+            }
+
+            let locality = $("#cboLocality").val();
+            if (locality === "Select a locality...") {
+                $("#cboLocality").focus();
+                return;
+            }
+
+            let allocationtype = $("#cboAllocationType").val();
+            if (allocationtype === "Select allocation type...") {
+                $("#cboAllocationType").focus();
+                return;
+            }
+
+            $.getJSON('@Url.Action("LandUse")', { id: landuse },
+                function (results) {
+                    let landuseid = results.landUseInitial;
+
+                    $.getJSON('@Url.Action("LandUseType")', { id: landusetype },
+                        function (result) {
+                            let landusetypeid = result.landUseTypeInitial;
+
+                            $.getJSON('@Url.Action("AllocationType")', { id: allocationtype },
+                                function (results) {
+                                    let allocationid = results.allocationTypeInitial;
+
+                                    $.getJSON('@Url.Action("Locality")', { id: locality },
+                                        function (results) {
+                                            let localityid = results.localityInitial;
+
+                                            let newPropertyNumber = `${landuseid}/${localityid}/${allocationid}/${blockNumber.val()}/${plotNumber.val()}`
+                                            $("#txtNewPropertyNumber").val(newPropertyNumber);
+                                        }
+                                    );
+                                }
+                            );
+                        }
+                    );
+                }
+            );
+
+        });
+
+
+        $(function () {
+            $("#cboLandUse").change(function () {
+                var selectedLandUseId = $("#cboLandUse").val();
+                var selectedLandUseType = $("#cboLandUseType");
+                selectedLandUseType.empty();
+
+                $("#cboLandUseType").append("<option selected disabled>" + "Select land use type..." + "</option>");
+
+                if (selectedLandUseId != null && selectedLandUseId != '') {
+                    $.getJSON('@Url.Action("LandUseTypes")', { landuseid: selectedLandUseId },
+                        function (results) {
+                            console.log(results);
+                            $.each(results, function (i) {
+                                let landusetype = results[i];
+                                $("#cboLandUseType").append("<option value=" + landusetype.landUseTypeId + ">" + landusetype.landUseTypeName + "</option>");
+                            });
+                        }
+                    );
+                }
+            });
+
+
+            $("#cboBlock").change(function () {
+                var selectedblock = $("#cboBlock option:selected").text();
+                var selectedPropertyNumbers = $("#cboOldPropertyNumber");
+                selectedPropertyNumbers.empty();
+
+                $("#cboOldPropertyNumber").append("<option selected disabled>" + "Select an old property number..." + "</option>");
+
+                if (selectedblock != null && selectedblock != '') {
+                    
+                    $.getJSON('@Url.Action("ExistingDetails")', { block: selectedblock, localityId: 67 },
+                        function (results) {
+                            $.each(results, function (i) {
+                                let propertydetails = results[i];
+                                $("#cboOldPropertyNumber").append("<option value= " + propertydetails.oldPropertyNumber + ">" + propertydetails.oldPropertyNumber + "</option>");
+                            });
+                        }
+                    );
+                }
+            });
+
+
+            $("#cboOldPropertyNumber").change(function () {
+                let property = $("#cboOldPropertyNumber option:selected").text()
+                $.getJSON('@Url.Action("CustomerName")', { propertyNumber: property },
+                    function (results) {
+                        $("#txtCustomerName").val(results.customerName);
+                    }
+                );
+
+                propertyarr = property.split("/");
+
+                if (property.includes("HOS")) {
+                    $("#cboPropertyType").find("option:contains('H.O.S HOUSE')").prop("selected", true);
+                    $("#cboLandUse").find("option:contains('HOUSE OWNERSHIP SCHEME')").prop("selected", true);
+
+                    $("#txtBlockNumber").val(propertyarr[0]);
+                    $("#txtPlotNumber").val(propertyarr[1]);
+                }
+                else if (property.includes("MKT")) 
+                {
+                    $("#cboLandUse").find("option:contains('COMMERCIAL')").prop("selected", true);
+                    $("#cboLandUse").trigger("change");
+
+                    if (propertyarr.length == 4) {
+                        $("#txtBlockNumber").val(propertyarr[2]);
+                        $("#txtPlotNumber").val(propertyarr[3]);
+                    }
+                    else {
+                        $("#txtBlockNumber").val("");
+                        $("#txtPlotNumber").val("");
+                    }
+                }
+                else 
+                {
+                    if (propertyarr.length == 4) {
+                        $("#txtBlockNumber").val(propertyarr[2]);
+                        $("#txtPlotNumber").val(propertyarr[3]);
+                    }
+                    else if (propertyarr.length == 5) {
+                        let blockNumber = `${propertyarr[2]}/${propertyarr[3]}`
+                        $("#txtBlockNumber").val(blockNumber);
+                        $("#txtPlotNumber").val(propertyarr[4]);
+                    }
+                    else {
+                        $("#txtBlockNumber").val("");
+                        $("#txtPlotNumber").val("");
+                    }
+                }
+
+
+                
+            });
+
+
+        });
+
+
+    </script>
+
+}

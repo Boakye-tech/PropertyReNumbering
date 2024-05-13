@@ -4,7 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-@*<h1>Create</h1>*@
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
 
 <h4 align="center">Community 6 - Re-Numbering</h4>
 <hr />
@@ -22,24 +25,24 @@
                     <select for="blocks" class="form-control" asp-items="ViewBag.BlockId" id="cboBlock">
                         <option selected disabled>Select a block...</option>
                     </select>
-
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="OldPropertyNumber" class="control-label"></label>
-                    <select asp-for="OldPropertyNumber" class="form-control" asp-items="ViewBag.PropertyNumber" id="cboOldPropertyNumber">
+                    <select asp-for="OldPropertyNumber" class="form-control" asp-items="ViewBag.OldPropertyNumber" id="cboOldPropertyNumber" required>
                         <option selected disabled>Select an old property number...</option>
                     </select>
-                    <span asp-validation-for="OldPropertyNumber" class="text-danger"></span>
+                    @* <span asp-validation-for="OldPropertyNumber" class="text-danger"></span> *@
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="CustomerName" class="control-label">Customer Name</label>
-                    <input id="txtCustomerName" class="form-control" />
+                    <label asp-for="CustomerName" class="control-label">Customer Name</label>
+                    <input asp-for="CustomerName" class="form-control" id="txtCustomerName" required />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
                 </div>
             </div>
 
@@ -114,7 +117,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label asp-for="NewPropertyNumber" class="control-label"></label>
-                    <input asp-for="NewPropertyNumber" class="form-control" disabled="disabled" id="txtNewPropertyNumber" />
+                    <input asp-for="NewPropertyNumber" class="form-control" readonly="readonly" id="txtNewPropertyNumber" required />
                     <span asp-validation-for="NewPropertyNumber" class="text-danger"></span>
                 </div>
             </div>
@@ -129,7 +132,7 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="button" value="Submit" class="btn btn-primary" id="btnSubmit" />
+                    <input type="submit" value="Submit" class="btn btn-primary" id="btnSubmit" />
                 </div>
             </div>
         </div>
@@ -149,7 +152,9 @@
 
 <script type="text/javascript" lang="javascript">
 
+
     $(document).ready(function () {
+
         $("#cboLandUse").find("option:contains('RESIDENTIAL')").prop("selected", true);
         $("#cboLocality").find("option:contains('COMMUNITY 6')").prop("selected", true);
 
@@ -165,28 +170,28 @@
         );
     });
 
-$("#btnSubmit").click(function ()
-{
-    var propertyRegistration = { PropertyId: 0, PropertyTypeId: $("#cboPropertyType").val(), NewPropertyNumber: $("#txtNewPropertyNumber").val(), OldPropertyNumber: $("#cboOldPropertyNumber option:selected").text(), CustomerName: $("#txtCustomerName").val(), LocalityId: $("#cboLocality").val(), LandUseId: $("#cboLandUse").val(), LandUseTypeId: $("#cboLandUseType").val(), AllocationTypeId: $("#cboAllocationType").val(), BlockNumber: $("#txtBlockNumber").val(), PlotNumber: $("#txtPlotNumber").val() };
+// $("#btnSubmit").click(function ()
+// {
+//     var propertyRegistration = { PropertyId: 0, PropertyTypeId: $("#cboPropertyType").val(), NewPropertyNumber: $("#txtNewPropertyNumber").val(), OldPropertyNumber: $("#cboOldPropertyNumber option:selected").text(), CustomerName: $("#txtCustomerName").val(), LocalityId: $("#cboLocality").val(), LandUseId: $("#cboLandUse").val(), LandUseTypeId: $("#cboLandUseType").val(), AllocationTypeId: $("#cboAllocationType").val(), BlockNumber: $("#txtBlockNumber").val(), PlotNumber: $("#txtPlotNumber").val() };
 
-    @*Use ajax to call controller method*@
-    $.ajax({
-        type: "POST",
-        url: "@Url.Action("Create")",
-        headers: { "RequestVerificationToken": $('input:hidden[name="__RequestVerificationToken"]').val() },
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify(propertyRegistration),
-        success: function (response) {
-            console.log(response);
+//     @*Use ajax to call controller method*@
+//     $.ajax({
+//         type: "POST",
+//         url: "@Url.Action("Create")",
+//         headers: { "RequestVerificationToken": $('input:hidden[name="__RequestVerificationToken"]').val() },
+//         contentType: "application/json",
+//         dataType: "json",
+//         data: JSON.stringify(propertyRegistration),
+//         success: function (response) {
+//             console.log(response);
 
-        },
-        error: function (e) {
-            console.log(e);
-        }
-    });
+//         },
+//         error: function (e) {
+//             console.log(e);
+//         }
+//     });
 
-});
+// });
 
 $("#btnGenerate").click(function () {
     let blockNumber = $("#txtBlockNumber");
@@ -292,13 +297,13 @@ $("#btnGenerate").click(function () {
 
             if (selectedblock != null && selectedblock != '')
             {
-                $.getJSON('@Url.Action("ExistingDetails")', { block: selectedblock },
+                    $.getJSON('@Url.Action("ExistingDetails")', { block: selectedblock, localityId: 35 },
                     function (results)
                     {
                         $.each(results, function (i)
                         {
                             let propertydetails = results[i];
-                            $("#cboOldPropertyNumber").append("<option value=''>" + propertydetails.propertyNumber + "</option>");
+                                $("#cboOldPropertyNumber").append("<option value= " +propertydetails.oldPropertyNumber + ">" + propertydetails.oldPropertyNumber + "</option>");
                         });
                     }
                 );

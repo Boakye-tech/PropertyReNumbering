@@ -27,5 +27,19 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\images\sort_asc.png" />
+    <None Include="wwwroot\images\sort_asc_disabled.png" />
+    <None Include="wwwroot\images\sort_both.png" />
+    <None Include="wwwroot\images\sort_desc.png" />
+    <None Include="wwwroot\images\sort_desc_disabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\PropertyRegistration\CThree.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 </Project>

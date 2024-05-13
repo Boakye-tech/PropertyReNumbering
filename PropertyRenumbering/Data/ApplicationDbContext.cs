@@ -17,7 +17,6 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<LandUseType> LandUseTypes { get; set; }
     public DbSet<Locality> Localities { get; set; }
     public DbSet<PlotSize> PlotSizes { get; set; }
-    public DbSet<PropertyDetails> PropertyDetails { get; set; }
     public DbSet<PropertyType> PropertyTypes { get; set; }
     public DbSet<Blocks> Blocks { get; set; }
     public DbSet<ExistingDetails> ExistingDetails { get; set; }
@@ -87,7 +86,7 @@ public class ApplicationDbContext : IdentityDbContext
 
         builder.Entity<LandUseType>().HasData(
             new LandUseType() { LandUseId = 1, LandUseTypeId = 1, LandUseTypeInitial = "", LandUseTypeName = "TDC BUILT HOUSES (HOS)" },
-            new LandUseType() { LandUseId = 1, LandUseTypeId = 2, LandUseTypeInitial = "", LandUseTypeName = "LESSEE BUILYT HOUSES" },
+            new LandUseType() { LandUseId = 1, LandUseTypeId = 2, LandUseTypeInitial = "", LandUseTypeName = "LESSEE BUILT HOUSES" },
             new LandUseType() { LandUseId = 1, LandUseTypeId = 3, LandUseTypeInitial = "", LandUseTypeName = "APARTMENTS" },
             new LandUseType() { LandUseId = 1, LandUseTypeId = 4, LandUseTypeInitial = "", LandUseTypeName = "HOUSES BY ESTATE DEVELOPERS" },
 

@@ -13,7 +13,7 @@ namespace PropertyRenumbering.Models
         {
         }
 
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PropertyId { get; set; }
 
 
@@ -26,7 +26,7 @@ namespace PropertyRenumbering.Models
         [Display(Name ="New Property Number")]
         public string? NewPropertyNumber { get; set; }
 
-        //[Required]
+        [Required]
         [MaxLength(75)]
         [Display(Name = "Old Property Number")]
         public string? OldPropertyNumber { get; set; }
